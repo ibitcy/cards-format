@@ -1,0 +1,9 @@
+#!/bin/sh
+cd "$(dirname "$0")"
+rm -rf lib/
+rm -rf index.d.ts
+mkdir lib
+yarn
+tsc ./src/ts/cards-format.ts -d --jsx react --target ES5 --outDir ./lib
+cp ./lib/cards-format.d.ts ./
+mv cards-format.d.ts index.d.ts
