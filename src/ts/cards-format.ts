@@ -254,11 +254,11 @@ export class CardsFormat {
 		return value;
 	};
 
-	public safeVal(value: string, $target, callback: (value: string) => void): void {
+	public safeVal(value: string, $target: HTMLInputElement, callback: (value: string) => void): void {
 		let currPair, cursor, digit, last, prevPair;
 
 		try {
-			cursor = $target.getAttribute('selectionStart');
+			cursor = $target.selectionStart;
 		} catch (e) {
 			cursor = null;
 		}
@@ -269,7 +269,7 @@ export class CardsFormat {
 			callback(value)
 		});
 
-		if (cursor !== null && $target.is(":focus")) {
+		if (cursor !== null && $target === document.activeElement) {
 			if (cursor === last.length) {
 				cursor = value.length;
 			}
@@ -282,8 +282,8 @@ export class CardsFormat {
 				}
 			}
 
-			$target.setAttribute('selectionStart', cursor);
-			$target.setAttribute('selectionEnd', cursor);
+			$target.selectionStart = cursor;
+			$target.selectionEnd = cursor;
 		}
 	};
 
@@ -376,10 +376,10 @@ export class CardsFormat {
 		}
 	};
 
-	public hasTextSelected($target) {
+	public hasTextSelected($target:HTMLInputElement) {
 		let _ref;
 
-		if (($target.getAttribute('selectionStart') != null) && $target.getAttribute('selectionStart') !== $target.getAttribute('selectionEnd')) {
+		if (($target.selectionStart != null) && $target.selectionStart !== $target.selectionEnd) {
 			return true;
 		}
 
@@ -401,7 +401,7 @@ export class CardsFormat {
 			return;
 		}
 
-		if (($target.getAttribute('selectionStart') != null) && parseInt($target.getAttribute('selectionStart')) !== value.length) {
+		if (($target.selectionStart != null) && $target.selectionStart !== value.length) {
 			return;
 		}
 
