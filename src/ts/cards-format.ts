@@ -15,7 +15,7 @@ export enum CardTypes{
 	jcb
 }
 
-interface Card {
+export interface Card {
 	type: CardTypes,
 	patterns: number[],
 	format: RegExp,
