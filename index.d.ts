@@ -28,11 +28,11 @@ export declare class CardsFormat {
     reFormatCardNumber(e: KeyboardEvent, callback: (value: string) => void): void;
     formatCardNumber(e: KeyboardEvent, callback: (value: string) => void): void;
     replaceFullWidthChars(str: string): string;
-    safeVal(value: string, $target: any, callback: (value: string) => void): void;
+    safeVal(value: string, $target: HTMLInputElement, callback: (value: string) => void): void;
     paymentFormatCardNumber(num: any): string;
     restrictNumeric(e: KeyboardEvent): boolean;
     restrictCardNumber(e: KeyboardEvent): boolean;
-    hasTextSelected($target: any): boolean;
+    hasTextSelected($target: HTMLInputElement): boolean;
     formatBackCardNumber(e: any, callback: (value: string) => void): void;
     reFormatExpiry(e: any, callback: (value: string) => void): void;
     paymentFormatExpiry(expiry: string): string;
