@@ -43,7 +43,8 @@ Formats card numbers:
 ```
 Then, when the payment form is submitted, you can validate the card number on the client-side:
 
-+ `validateCardNumber` (num: number): boolean;
++ `validateCardNumber` (num: number): boolean; - Full validate
++ `validateCardNumberSimple` (num: number): boolean; -  Simple validate
 
 #### Example
 

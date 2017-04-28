@@ -113,10 +113,26 @@ const CARDS: Card[] = [
 ];
 
 export class CardsFormat {
-	public validateCardNumber(num: number): boolean {
+	public validateCardNumberSimple(num: number): boolean {
 		let numStr: string = (num + '').replace(/\s+|-/g, '');
 
 		return numStr && numStr.length > 0;
+	}
+
+	public validateCardNumber(num: number): boolean {
+		let numStr: string = (num + '').replace(/\s+|-/g, '');
+
+		if (!/^\d+$/.test(numStr)) {
+			return false;
+		}
+
+		let card = this.cardFromNumber(num);
+
+		if (!card) {
+			return false;
+		}
+
+		return (card.length.indexOf(numStr.length) >= 0) && (card.luhn === false || this.luhnCheck(num));
 	}
 
 	public cardFromNumber(num: number): Card {
@@ -376,7 +392,7 @@ export class CardsFormat {
 		}
 	};
 
-	public hasTextSelected($target:HTMLInputElement) {
+	public hasTextSelected($target: HTMLInputElement) {
 		let _ref;
 
 		if (($target.selectionStart != null) && $target.selectionStart !== $target.selectionEnd) {
@@ -474,6 +490,7 @@ export class CardsFormat {
 	};
 
 	public validateCardExpiry(month: number, year: number): boolean {
+
 		if (!(month && year)) {
 			return false;
 		}
