@@ -21,6 +21,7 @@ export interface Card {
     luhn: boolean;
 }
 export declare class CardsFormat {
+    validateCardNumberSimple(num: number): boolean;
     validateCardNumber(num: number): boolean;
     cardFromNumber(num: number): Card;
     luhnCheck(num: number): boolean;
